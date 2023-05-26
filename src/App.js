@@ -1,18 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Header from './components/header/Header';
-import Calculator from './components/calculator/Calculator';
-import Graph2D from './components/graph2d/Graph2D';
-import Graph3D from './components/graph3d/Graph3D';
+import Header from "./components/Header/Header";
+import Graph2D from "./components/Graph2D/Graph2D";
+import Graph3D from "./components/Graph3D/Graph3D";
+import Calculator from "./components/Calculator/Calculator"
+
 import { useState } from 'react';
 
 function App() {
-    const [showComponent, showComponentHandler] = useState('Graph3D');
+    const [showComponent, setShowComponent] = useState('Graph3D');
 
     return (
         <div className="App">
-            <Header showComponent={showComponentHandler} />
+            <Header showComponent={setShowComponent} />
         {
             showComponent === 'Calculator' ? <Calculator /> :
             showComponent === 'Graph2D' ? <Graph2D /> :
