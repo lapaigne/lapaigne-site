@@ -1,9 +1,6 @@
-﻿import React, { useState } from "react";
+﻿import React, { useState, useRef } from "react";
 
-import { useRef } from "react";
-
-import CommonCalculator from "../../modules/Calculator/CommonCalculator";
-import PolynomialCalculator from "../../modules/Calculator/PolynomialCalculator";
+import useCalculator from "./useCalculator";
 
 const Calculator = () => {
 
@@ -13,14 +10,7 @@ const Calculator = () => {
     const refB = useRef(null);
     const refC = useRef(null);
 
-    // const common =
-
-    const operandHandler = (operand) => {
-        if (refA, refB, refC) {
-            const A = refA.current.value;
-            const B = refB.current.value;
-        }
-    }
+    const calculator = useCalculator(refA, refB, refC, calculatorType);
 
     const typeToggleHandler = () => {
         setCalculatorType(calculatorType === "Common" ? "Polynomial" : "Common");
@@ -34,16 +24,20 @@ const Calculator = () => {
             <textarea className="calculator-textarea" placeholder="поле B" ref={refB} />
             {calculatorType === "Common" ? 
             <div className="common-operand-wrapper">
-                <button className="calculator-operand">A+B</button>
-                <button className="calculator-operand">A-B</button>
-                <button className="calculator-operand">A*B</button>
-                <button className="calculator-operand">A**B</button>
-                <button className="calculator-operand">A/B</button>
-                <button className="calculator-operand">A^B</button>
+                <button className="calculator-operand" onClick={() => calculator('add')}>A+B</button>
+                <button className="calculator-operand" onClick={() => calculator('sub')}>A-B</button>
+                <button className="calculator-operand" onClick={() => calculator('mult')}>A*B</button>
+                <button className="calculator-operand" onClick={() => calculator('prod')}>A**B</button>
+                <button className="calculator-operand" onClick={() => calculator('div')}>A/B</button>
+                <button className="calculator-operand" onClick={() => calculator('pow')}>A^B</button>
             </div> :
             calculatorType === "Polynomial" ? 
-            <div className="common-operand-wrapper">
-
+            <div className="polynomial-operand-wrapper">
+                <button className="calculator-operand" onClick={() => calculator('add')}>A+B</button>
+                <button className="calculator-operand" onClick={() => calculator('sub')}>A-B</button>
+                <button className="calculator-operand" onClick={() => calculator('mult')}>A*B</button>
+                <button className="calculator-operand" onClick={() => calculator('calcAt')}>A(B)</button>
+                
             </div> : 
             <></>}
             <textarea className="calculator-textarea" placeholder="поле C" ref={refC} />

@@ -4,6 +4,10 @@ export default class PolynomialCalculator {
         return new Polynomial(members);
     }
 
+    getEntity(str) {
+        return this.getPolynomial(str);
+    }
+
     getMember(str) {
         if (str) {
             const arr = str.split('x');
@@ -90,5 +94,8 @@ export default class PolynomialCalculator {
             polynomial = this.add(polynomial, this.polynomial(members));
         });
         return polynomial;
+    }
+    calcAt(a, b) {
+        return a.getValue(b.toString());
     }
 }
