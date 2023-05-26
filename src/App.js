@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Header from './components/header/Header';
+import Calculator from './components/calculator/Calculator';
+import Graph2D from './components/graph2d/Graph2D';
+import Graph3D from './components/graph3d/Graph3D';
+import { useState } from 'react';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [showComponent, showComponentHandler] = useState('Graph3D');
+
+    return (
+        <div className="App">
+            <Header showComponent={showComponentHandler} />
+        {
+            showComponent === 'Calculator' ? <Calculator /> :
+            showComponent === 'Graph2D' ? <Graph2D /> :
+            showComponent === 'Graph3D' ? <Graph3D /> : <></>
+        }            
+        </div>
+    );
 }
 
 export default App;
