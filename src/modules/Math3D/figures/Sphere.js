@@ -5,8 +5,8 @@ export default class Sphere extends Ellipsoid {
         super({ a: radius, b: radius, c: radius, segments, color, center });
         
         this.animations = [
-            { method: 'rotateOY', value: Math.PI / 200, center: new Point() },
-            { method: 'rotateOY', value: -Math.PI / 50, center: this.center }
+            { method: 'rotateOY', value: Math.PI / 2000, center: new Point() },
+            { method: 'rotateOY', value: -Math.PI / 5000, center: this.center }
         ]
     }
 }

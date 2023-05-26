@@ -1,4 +1,5 @@
-﻿export default class Polygon {
+﻿import Point from "./Point";
+export default class Polygon {
     constructor(points = [], color = '#ff0088') {
         this.points = points;
         this.lumen = 1;
