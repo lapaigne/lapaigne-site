@@ -1,6 +1,6 @@
 ﻿import React, { useState, useRef } from "react";
 
-import useCalculator from "./useCalculator";
+import useCalculator from "../hooks/useCalculator";
 
 const Calculator = () => {
 

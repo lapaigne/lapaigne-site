@@ -1,4 +1,4 @@
-﻿import Graph from "./Graph";
+﻿import Graph from "../../modules/Graph/Graph";
 
 const useGraph = (render = () => { }) => {
 

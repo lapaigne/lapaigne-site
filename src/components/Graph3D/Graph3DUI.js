@@ -19,7 +19,9 @@ const Graph3DUI = ({ options, togglePoints, toggleEdges, togglePolygons }) => {
             </div>
         }
         <label htmlFor="points-checkbox">точки</label>
+
         <label htmlFor="edges-checkbox">ребра</label>
+        
         <label htmlFor="polygons-checkbox">полигоны</label>
     </div>)
 }

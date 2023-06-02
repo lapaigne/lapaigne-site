@@ -1,7 +1,7 @@
 ﻿import React, { useEffect, useRef, useState } from "react";
 import Math3D, { Point, Edge, Polygon, Vector, Light, Cone, Cube, Cylinder, Ellipsoid, Sphere, Toroid } from "../../modules/Math3D";
 import Graph3DUI from "./Graph3DUI";
-import useGraph from "../../modules/Graph/useGraph";
+import useGraph from "../hooks/useGraph";
 // import './Graph3D.scss';
 
 const Graph3D = () => {
