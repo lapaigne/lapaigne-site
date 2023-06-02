@@ -1,14 +1,14 @@
 ﻿import React, { useEffect, useRef, useState } from "react";
-import Math3D, { Point, Edge, Polygon, Vector, Light, Cone, Cube, Cylinder, Ellipsoid, Sphere, Toroid } from "../../modules/Math3D";
+import Math3D, { Point, Edge, Polygon, Vector, Light, Cube } from "../../modules/Math3D";
 import Graph3DUI from "./Graph3DUI";
 import useGraph from "../hooks/useGraph";
 // import './Graph3D.scss';
 
 const Graph3D = () => {
     const settings = {
-        pointsVisible: false,
-        edgesVisible: false,
-        polygonsVisible: true,
+        showPoints: false,
+        showEdges: false,
+        showPolygons: true,
         canRotate: false
     }
     const WIN = {
@@ -21,11 +21,11 @@ const Graph3D = () => {
     };
     const LIGHT = new Light(-20, 0, 10, 5e3);
     const math3D = new Math3D({ WIN });
-    const scene = [new Sphere({ segments: 40 })];
+    let scene = [new Cube({})];
 
     const Graph = useGraph(renderScene);
     let graph = null;
-    
+
     useEffect(() => {
         graph = Graph({
             id: 'canvas3d',
@@ -83,15 +83,18 @@ const Graph3D = () => {
         }
     }
 
+    const updateScene = (figure) => {
+        scene = [figure];
+    }
 
     const togglePoints = (value) => {
-        settings.pointsVisible = value;
+        settings.showPoints = value;
     }
     const toggleEdges = (value) => {
-        settings.edgesVisible = value;
+        settings.showEdges = value;
     }
     const togglePolygons = (value) => {
-        settings.polygonsVisible = value;
+        settings.showPolygons = value;
     }
 
     function renderScene(OutFPS) {
@@ -118,7 +121,7 @@ const Graph3D = () => {
 
         math3D.sortByArtistAlgorithm(polygons);
 
-        if (settings.polygonsVisible) {
+        if (settings.showPolygons) {
             polygons.forEach(polygon => {
                 const points = [];
                 for (let i = 0; i < polygon.points.length; i++) {
@@ -151,7 +154,7 @@ const Graph3D = () => {
 
         scene.forEach(figure => {
 
-            if (settings.edgesVisible) {
+            if (settings.showEdges) {
                 figure.edges.forEach(edge => {
                     const p1 = figure.points[edge.p1];
                     const p2 = figure.points[edge.p2];
@@ -166,7 +169,7 @@ const Graph3D = () => {
                 });
             }
 
-            if (settings.pointsVisible) {
+            if (settings.showPoints) {
                 figure.points.forEach(point => {
                     graph.point(
                         math3D.xs(point),
@@ -179,21 +182,17 @@ const Graph3D = () => {
         })
 
         graph.text(WIN.LEFT, 9.25, OutFPS);
-        // const center = new Point();
-        // graph.point(
-        //     math3D.xs(center),
-        //     math3D.ys(center),
-        // '#fff', 1)
         graph.render();
     }
 
     return (<div className="Graph3D">
         <canvas id="canvas3d"></canvas>
         <Graph3DUI
-            options={settings}
-            togglePoints={(value) => togglePoints(value)}
-            toggleEdges={(value) => toggleEdges(value)}
-            togglePolygons={(value) => togglePolygons(value)}
+            settings={settings}
+            togglePoints={togglePoints}
+            toggleEdges={toggleEdges}
+            togglePolygons={togglePolygons}
+            updateScene={updateScene}
         />
     </div>)
 }

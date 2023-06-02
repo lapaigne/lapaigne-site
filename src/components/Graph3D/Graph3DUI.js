@@ -1,28 +1,45 @@
 ﻿import React, { useCallback, useState } from "react";
 
-const Graph3DUI = ({ options, togglePoints, toggleEdges, togglePolygons }) => {
+import MyCheckbox from "../MyCheckbox/MyCheckbox";
+import { Cone, Cube, Cylinder, Ellipsoid, Sphere, Toroid } from "../../modules/Math3D";
+
+const Graph3DUI = ({ settings, togglePoints, toggleEdges, togglePolygons, updateScene }) => {
+    const figures = {
+        Cube: new Cube({}),
+        Sphere: new Sphere({})
+    }
+
     const [showPanel, setShowPanel] = useState(false);
 
-
-    //переименовать в handler
     const togglePanel = useCallback(() => setShowPanel(!showPanel),
         [setShowPanel, showPanel]
     );
 
-    return (<div className="Graph3DUI">
-        <button onClick={togglePanel}>{showPanel ? '<<' : '>>'}</button>
-        {
-            showPanel && <div>
-                <input id="points-checkbox" type="checkbox" onClick={(event) => togglePoints(event.target.checked)} />
-                <input id="edges-checkbox" type="checkbox" onClick={(event) => toggleEdges(event.target.checked)} />
-                <input id="polygons-checkbox" type="checkbox" onClick={(event) => togglePolygons(event.target.checked)} />
-            </div>
-        }
-        <label htmlFor="points-checkbox">точки</label>
+    const selectFigure = useCallback((event) => {
+        updateScene(figures[event.target.value]);
+    })
 
-        <label htmlFor="edges-checkbox">ребра</label>
-        
-        <label htmlFor="polygons-checkbox">полигоны</label>
-    </div>)
+    return (
+        <div className="Graph3DUI">
+            <button onClick={togglePanel}>{showPanel ? '<<' : '>>'}</button>
+            {
+                showPanel && (<div>
+                    <MyCheckbox text='точки' checked={settings.showPoints} onClick={togglePoints} />
+                    <MyCheckbox text='ребра' checked={settings.showEdges} onClick={toggleEdges} />
+                    <MyCheckbox text='полигоны' checked={settings.showPolygons} onClick={togglePolygons} />
+                </div>)
+            }
+            <div>
+                <select onChange={selectFigure}>
+                    {
+                        Object.keys(figures).map((key, index) => (
+                            <option key={index} className="figure-option" value={key}>
+                                {key}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
+        </div>)
 }
 export default Graph3DUI;
