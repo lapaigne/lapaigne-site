@@ -1,5 +1,5 @@
-﻿import React, { useEffect, useRef, useState } from "react";
-import Math3D, { Point, Edge, Polygon, Vector, Light, Cube } from "../../modules/Math3D";
+﻿import React, { useEffect } from "react";
+import Math3D, { Point, Light, Cube } from "../../modules/Math3D";
 import Graph3DUI from "./Graph3DUI";
 import useGraph from "../hooks/useGraph";
 // import './Graph3D.scss';
@@ -21,7 +21,7 @@ const Graph3D = () => {
     };
     const LIGHT = new Light(-20, 0, 10, 5e3);
     const math3D = new Math3D({ WIN });
-    let scene = [new Cube({})];
+    let scene = [new Cube({ center: new Point(10, 0, 0) })];
 
     const Graph = useGraph(renderScene);
     let graph = null;
@@ -90,15 +90,17 @@ const Graph3D = () => {
     const togglePoints = (value) => {
         settings.showPoints = value;
     }
+
     const toggleEdges = (value) => {
         settings.showEdges = value;
     }
+
     const togglePolygons = (value) => {
         settings.showPolygons = value;
     }
 
     function renderScene(OutFPS) {
-        if (graph == null) return;
+        if (!graph) return;
         graph.clear();
 
         const polygons = [];
