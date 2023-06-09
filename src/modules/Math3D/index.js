@@ -3,10 +3,16 @@ export { Point, Edge, Polygon, Light, Vector, Figure } from "./entities";
 export {
     Cone,
     Cube,
-    Cylinder,
     Ellipsoid,
+    EllipticalCylinder,
+    EllipticalParaboloid,
+    HyperbolicCylinder,
+    HyperbolicParaboloid,
+    OneSheetedHyperboloid,
+    ParabolicCylinder,
     Sphere,
     Toroid,
-
+    TwoSheetedHyperboloid,
 } from "./figures";
+
 export default Math3D;

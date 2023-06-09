@@ -4,10 +4,17 @@ import MyCheckbox from "../MyCheckbox/MyCheckbox";
 import {
     Cone,
     Cube,
-    Cylinder,
     Ellipsoid,
+    EllipticalCylinder,
+    EllipticalParaboloid,
+    HyperbolicCylinder,
+    HyperbolicParaboloid,
+    OneSheetedHyperboloid,
+    ParabolicCylinder,
     Sphere,
-    Toroid
+    Toroid,
+    TwoSheetedHyperboloid,
+
 } from "../../modules/Math3D";
 
 const Graph3DUI = ({ settings, togglePoints, toggleEdges, togglePolygons, updateScene }) => {
@@ -15,9 +22,15 @@ const Graph3DUI = ({ settings, togglePoints, toggleEdges, togglePolygons, update
         Cube: new Cube({}),
         Sphere: new Sphere({}),
         Cone: new Cone({}),
-        Cylinder: new Cylinder({}),
         Ellipsoid: new Ellipsoid({}),
         Toroid: new Toroid({}),
+        EllipticalCylinder: new EllipticalCylinder({}),
+        EllipticalParaboloid: new EllipticalParaboloid({}),
+        OneSheetedHyperboloid: new OneSheetedHyperboloid({}),
+        TwoSheetedHyperboloid: new TwoSheetedHyperboloid({}),
+        ParabolicCylinder: new ParabolicCylinder({}),
+        HyperbolicCylinder: new HyperbolicCylinder({}),
+        HyperbolicParaboloid: new HyperbolicParaboloid({}),
     }
 
     const [showPanel, setShowPanel] = useState(false);

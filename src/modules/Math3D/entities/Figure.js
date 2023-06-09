@@ -36,8 +36,7 @@ export default class Figure {
                 dy: anim.center.y,
                 dz: anim.center.z,
             });
-            // const matrix = math3D.getTransformMatrix(t1, t2, t3);
-            // math3D.transform(matrix, point)
+             const matrix = math3D.getTransformMatrix(t1, t2, t3);
 
             this.points.forEach(point => {
                 math3D.transform(t1, point);
@@ -49,9 +48,6 @@ export default class Figure {
             math3D.transform(t2, this.center);
             math3D.transform(t3, this.center);
             
-            // math3D.transform(matrix, this.center); не будет работать из-за перемножения матриц переноса
-            // при перемножении смещение сводится к нулю, применяется вторая матрица, смещающая центр фигуры
-            // из-за этого фигура сдвигается и начинается хаос
         });
     }
 }

@@ -1,4 +1,4 @@
-﻿import { Point, Polygon, Edge } from "../entities";
+import { Point, Polygon, Edge } from "../entities";
 import Ellipsoid from "./Ellipsoid";
 export default class Sphere extends Ellipsoid {
     constructor({ radius = 10, segments = 10, color = '#aa5577', center = new Point() }) {

@@ -6,7 +6,6 @@ const useCalculator = (refA, refB, refC, calculatorType) => {
     return (
         (operand) => {
             if (refA && refB && refC) {
-                // console.log(refA)
 
                 const A = refA.current.value;
                 const B = refB.current.value;

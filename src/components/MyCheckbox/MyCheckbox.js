@@ -1,4 +1,4 @@
-﻿const MyCheckbox = ({ text, checked, onClick }) => {
+const MyCheckbox = ({ text, checked, onClick }) => {
     const id = `checkbox-${Math.round(Math.random() * 1e6)}`;
 
     return (

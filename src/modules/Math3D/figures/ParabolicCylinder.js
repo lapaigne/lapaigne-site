@@ -1,15 +1,15 @@
-﻿import { Point, Polygon, Edge, Figure } from "../entities";
-export default class Cone extends Figure {
-    constructor({ a = 4, b = 4, c = 4, segments = 20, center = new Point(), color = '#499e4c' }) {
+import { Point, Polygon, Edge, Figure } from "../entities";
+export default class ParabolicCylinder extends Figure {
+    constructor({ segments = 20, a = 2, b = 2, center = new Point(), color = '#d79196' }) {
         super({ center });
         this.disableOptimization = true;
         const dt = 2 * Math.PI / segments;
         for (let i = -Math.PI; i <= Math.PI; i += dt) {
-            for (let j = 0; j < 2 * Math.PI; j += dt) {
+            for (let j = -Math.PI; j < Math.PI; j += dt) {
                 this.points.push(new Point(
-                    a * i * Math.cos(j),
-                    c * i,
-                    b * i * Math.sin(j)
+                    this.center.x + b * Math.sinh(i),
+                    this.center.y + a * Math.cosh(i),
+                    this.center.z + j * 2,
                 ));
             }
         }

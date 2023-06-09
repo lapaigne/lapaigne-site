@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import Math3D, { Point, Light, Cube } from "../../modules/Math3D";
 import Graph3DUI from "./Graph3DUI";
 import useGraph from "../hooks/useGraph";
@@ -104,6 +104,14 @@ const Graph3D = () => {
         graph.clear();
 
         const polygons = [];
+        let ignoreVectorProduct = false;
+
+        scene.forEach(figure => {
+            if (figure.disableOptimization) {
+                ignoreVectorProduct = true;
+            }
+        });
+
 
         for (let i = 0; i < scene.length; i++) {
             scene[i].polygons.forEach(polygon => {
@@ -131,7 +139,7 @@ const Graph3D = () => {
                 }
                 const cameraVector = math3D.calcVector(WIN.CAMERA, polygon.center);
                 const product = math3D.calcDotProduct(cameraVector, polygon.normal)
-                if (product > 0) {
+                if (product > 0 || ignoreVectorProduct) {
                     let { r, g, b } = polygon.color;
                     const dark = math3D.calcShadow(polygon, scene, LIGHT);
                     const lumen = math3D.calcIllumination(polygon.lumen, LIGHT.lumen

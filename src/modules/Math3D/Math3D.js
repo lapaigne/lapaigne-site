@@ -98,7 +98,6 @@ export default class Math3D {
             [0, 0, 1, 0],
             [0, 0, 0, 1],
         ]);
-        // бесполезный метод из-за матриц переноса
     }
 
     calcCenters(figure) {
@@ -126,7 +125,7 @@ export default class Math3D {
     }
 
     calcNormals(figure) {
-        figure.polygons.forEach(polygon => { // вектор можно хранить в точке
+        figure.polygons.forEach(polygon => {
             const a = this.calcVector(figure.points[polygon.points[1]], polygon.center)
             const b = this.calcVector(figure.points[polygon.points[0]], polygon.center)
             polygon.normal = this.calcVectorProd(a, b)
@@ -174,7 +173,6 @@ export default class Math3D {
         const radius = polygon.radius;
         const s = this.calcVector(m1, LIGHT);
         for (let i = 0; i < figures.length; i++) {
-            // console.log(figures[i].polygons.length)
             if (polygon.figureIndex === i) {
                 continue;
             }
@@ -184,7 +182,6 @@ export default class Math3D {
                 if (polygon.lumen < polygon2.lumen) {
                     continue;
                 }
-                // console.log(polygon.lumen, polygon2.lumen)
                 const dark = this.calcVectorLength(
                     this.calcVectorProd(this.calcVector(m1, m0), s)
                 ) / this.calcVectorLength(s);
