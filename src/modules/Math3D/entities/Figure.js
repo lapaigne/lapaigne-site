@@ -1,4 +1,4 @@
-﻿import { Point, Polygon, Edge } from "../entities";
+import { Point, Polygon, Edge } from ".";
 export default class Figure {
     constructor({ points = [], edges = [], polygons = [], center = new Point(), color = '#e8649b' }) {
         this.points = points;

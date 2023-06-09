@@ -1,5 +1,5 @@
 import { Point, Polygon, Edge } from "../entities";
-import Figure from "./Figure";
+import Figure from "../entities/Figure";
 export default class Cube extends Figure {
     constructor({ size = 4, center = new Point() }) {
         super({ center });

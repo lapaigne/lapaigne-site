@@ -1,5 +1,5 @@
 ﻿import { Point, Polygon, Edge } from "../entities";
-import Figure from "./Figure";
+import Figure from "../entities/Figure";
 export default class Cone extends Figure {
     constructor({ a = 4, c = 4, b = 4, segments = 20, color = '#3366ff', center = new Point(0, 0, 0) }) {
         super({ center });

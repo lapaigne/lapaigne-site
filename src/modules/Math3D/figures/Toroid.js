@@ -1,5 +1,5 @@
-﻿import { Point, Polygon, Edge } from "../entities";
-import Figure from "./Figure";
+import { Point, Polygon, Edge, Figure } from "../entities";
+// import Figure from "../entities/Figure";
 export default class Toroid extends Figure {
     constructor({ minor = 3, major = 6, segments = 20, color = '#00ff66', center = new Point() }) {
         super({ center });

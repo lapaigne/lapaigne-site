@@ -1,5 +1,4 @@
-﻿import { Point, Polygon, Edge } from "../entities";
-import Figure from "./Figure";
+import { Point, Polygon, Edge, Figure } from "../entities";
 export default class Ellipsoid extends Figure {
     constructor({ a = 10, b = 8, c = 12, segments = 25, color = '#ff9966', center = new Point() }) {
         super({ center });
@@ -36,7 +35,7 @@ export default class Ellipsoid extends Figure {
                     this.points.length - (i % segments + 1) - 1,
                     this.points.length - 1],
                     color
-                    ));
+                ));
         }
 
         // остальные полигоны

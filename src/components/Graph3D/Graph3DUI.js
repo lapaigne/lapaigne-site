@@ -1,12 +1,23 @@
-﻿import React, { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import MyCheckbox from "../MyCheckbox/MyCheckbox";
-import { Cone, Cube, Cylinder, Ellipsoid, Sphere, Toroid } from "../../modules/Math3D";
+import {
+    Cone,
+    Cube,
+    Cylinder,
+    Ellipsoid,
+    Sphere,
+    Toroid
+} from "../../modules/Math3D";
 
 const Graph3DUI = ({ settings, togglePoints, toggleEdges, togglePolygons, updateScene }) => {
     const figures = {
         Cube: new Cube({}),
-        Sphere: new Sphere({})
+        Sphere: new Sphere({}),
+        Cone: new Cone({}),
+        Cylinder: new Cylinder({}),
+        Ellipsoid: new Ellipsoid({}),
+        Toroid: new Toroid({}),
     }
 
     const [showPanel, setShowPanel] = useState(false);

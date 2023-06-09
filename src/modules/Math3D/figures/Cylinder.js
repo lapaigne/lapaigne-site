@@ -1,7 +1,7 @@
-﻿import { Point, Polygon, Edge } from "../entities";
-import Figure from "./Figure";
+import { Point, Polygon, Edge } from "../entities";
+import Figure from "../entities/Figure";
 export default class Cylinder extends Figure {
-    constructor({ a = 4, b = 4, height = 16, segments = 50, color = '#aa88aa', center = new Point(-5, 0, 0) }) {
+    constructor({ a = 4, b = 4, height = 16, segments = 50, color = '#aa88aa', center = new Point(0, 0, 0) }) {
         super({ center });
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < segments; j++) {
