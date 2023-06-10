@@ -7,7 +7,7 @@ import useGraph from "../hooks/useGraph";
 const Graph3D = () => {
     const settings = {
         showPoints: false,
-        showEdges: true,
+        showEdges: false,
         showPolygons: true,
         canRotate: false
     }
@@ -139,17 +139,13 @@ const Graph3D = () => {
                 }
                 const cameraVector = math3D.calcVector(WIN.CAMERA, polygon.center);
                 const product = math3D.calcDotProduct(cameraVector, polygon.normal)
-                if (product > 0 || ignoreVectorProduct) {
+                if (ignoreVectorProduct || product >= 0) {
                     let { r, g, b } = polygon.color;
                     const dark = math3D.calcShadow(polygon, scene, LIGHT);
-                    const lumen = math3D.calcIllumination(polygon.lumen, LIGHT.lumen
-                        * dark
-                    );
+                    const lumen = math3D.calcIllumination(polygon.lumen, LIGHT.lumen * dark);
                     r = Math.round(r * lumen);
                     g = Math.round(g * lumen);
                     b = Math.round(b * lumen);
-
-                    const color = polygon.rgbToHex(r, g, b);
 
                     graph.polygon(
                         points.map(point => {
@@ -157,7 +153,7 @@ const Graph3D = () => {
                                 x: math3D.xs(point),
                                 y: math3D.ys(point)
                             }
-                        }), color);
+                        }), polygon.rgbToHex(r, g, b));
                 }
             });
         }

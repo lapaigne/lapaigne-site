@@ -10,8 +10,6 @@ const useCalculator = (refA, refB, refC, calculatorType) => {
                 const A = refA.current.value;
                 const B = refB.current.value;
 
-                console.log(calc, operand)
-
                 refC.current.value = calc[operand](
                     calc.getEntity(A),
                     calc.getEntity(B)

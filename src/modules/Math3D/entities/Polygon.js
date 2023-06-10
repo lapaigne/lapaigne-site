@@ -1,7 +1,7 @@
 import Point from "./Point";
 import Vector from "./Vector";
 export default class Polygon {
-    constructor(points = [], color = '#ff0088') {
+    constructor(points = [], color = '#ffffff') {
         this.points = points;
         this.lumen = 1;
         this.color = this.hexToRgb(color);
