@@ -25,7 +25,8 @@ export default class Ellipsoid extends Figure {
                 new Polygon([
                     (i + 1) % segments + 1,
                     i % segments + 1,
-                    0], color
+                    0],
+                    color
                 ));
 
             //нижние полигоны (южный полюс)
@@ -51,6 +52,44 @@ export default class Ellipsoid extends Figure {
                     ));
             }
         }
+
+
+        for (let i = 0; i < segments; i++) {
+            this.edges.push(
+                new Edge(
+                    0,
+                    i + 1
+                ));
+            this.edges.push(
+                new Edge(
+                    this.points.length - 1,
+                    this.points.length - segments + i - 1
+                ));
+        }
+
+        for (let i = 0; i < segments; i++) {
+            for (let j = 0; j < segments; j++) {
+                this.edges.push(
+                    new Edge(
+                        i * segments + j % segments + 1,
+                        i * segments + (j + 1) % segments + 1,
+                    ));
+                if (i + 1 !== segments) {
+                    this.edges.push(
+                        new Edge(
+                            i * segments + j % segments + 1,
+                            (i + 1) * segments + j % segments + 1,
+                        ));
+                }
+            }
+        }
+
+
+        // for (let i = 0; i < segments - 1; i++) {
+        //     for (let j = 0; j < segments; j++) { // смещение на 1 из-за "северного полюса"
+        //     }
+        // }
+
 
     }
 }

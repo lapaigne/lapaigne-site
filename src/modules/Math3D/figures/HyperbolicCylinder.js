@@ -23,26 +23,27 @@ export default class HyperbolicCylinder extends Figure {
         }
 
 
-        for (let i = 0; i < this.points.length / 2 - segments; i++) {
+        for (let i = 0; i < this.points.length / 2; i++) {
             if (i + 1 < this.points.length && (i + 1) % segments !== 0) {
                 this.edges.push(new Edge(
                     i,
                     i + 1
                 ));
-            } else if ((i + 1) % segments === 0) {
+            }
+            else if ((i + 1) % segments === 0) {
                 this.edges.push(new Edge(
                     i,
                     i + 1 - segments
                 ));
             }
-            if (i < this.points.length - segments) {
+            if (i < this.points.length / 2 - segments) {
                 this.edges.push(new Edge(
                     i,
                     i + segments
                 ));
             }
         }
-        for (let i = this.points.length / 2 + segments; i < this.points.length; i++) {
+        for (let i = this.points.length / 2; i < this.points.length; i++) {
             if (i + 1 < this.points.length && (i + 1) % segments !== 0) {
                 this.edges.push(new Edge(
                     i,

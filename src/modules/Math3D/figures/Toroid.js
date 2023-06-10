@@ -1,6 +1,6 @@
 import { Point, Polygon, Edge, Figure } from "../entities";
 export default class Toroid extends Figure {
-    constructor({ minor = 3, major = 6, segments = 20, color = '#00ff66', center = new Point() }) {
+    constructor({ minor = 6, major = 12, segments = 20, color = '#00ff66', center = new Point() }) {
         super({ center });
 
         for (let i = 0; i < segments; i++) {
@@ -27,11 +27,20 @@ export default class Toroid extends Figure {
                     ));
             }
         }
-        this.animations = [
-            { method: 'rotateOY', value: -Math.PI / 1000, center: new Point() },
-            { method: 'rotateOY', value: -Math.PI / 168, center: this.center },
-            { method: 'rotateOX', value: Math.PI / 100, center: this.center },
-        ]
-    }
 
+        for (let i = 0; i < segments; i++) {
+            for (let j = 0; j < segments; j++) {
+                this.edges.push(
+                    new Edge(
+                        i * segments + j % segments,
+                        i * segments + (j + 1) % segments,
+                    ));
+                this.edges.push(
+                    new Edge(
+                        (i + 1) % segments * segments + j % segments,
+                        i * segments + j % segments,
+                    ));
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿import Point from "./Point";
+import Point from "./Point";
+import Vector from "./Vector";
 export default class Polygon {
     constructor(points = [], color = '#ff0088') {
         this.points = points;
@@ -6,7 +7,7 @@ export default class Polygon {
         this.color = this.hexToRgb(color);
         this.center = new Point();
         this.distance = 0;
-        this.normal = new Point();
+        this.normal = new Vector();
         this.figureIndex = 0;
         this.radius = 1; // псевдо-радиус
     }

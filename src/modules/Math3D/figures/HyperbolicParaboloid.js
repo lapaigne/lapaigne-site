@@ -1,14 +1,15 @@
 import { Point, Polygon, Edge, Figure } from "../entities";
 export default class HyperbolicParaboloid extends Figure {
-    constructor({ segments = 20, a = 3, b = 2, center = new Point(), color = '#d7d291' }) {
+    constructor({ segments = 25, a = 2, b = 2, center = new Point(), width = 10, color = '#d7d291' }) {
         super({ center });
         this.disableOptimization = true;
-        for (let x = -5; x < 5; x++) {
-            for (let y = -5; y < 5; y++) {
+        const dt = width / segments;
+        for (let i = -width / 2; i < width / 2; i += dt) {
+            for (let j = -width / 2; j < width / 2; j += dt) {
                 this.points.push(new Point(
-                    this.center.x + x,
-                    this.center.y + y,
-                    this.center.z + x * x / (a * a) - y * y / (b * b)
+                    this.center.x + i,
+                    this.center.y + j,
+                    this.center.z + i * i / (a * a) - j * j / (b * b)
                 ));
             }
         }

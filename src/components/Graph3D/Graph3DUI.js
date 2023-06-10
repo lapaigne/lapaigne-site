@@ -19,18 +19,18 @@ import {
 
 const Graph3DUI = ({ settings, togglePoints, toggleEdges, togglePolygons, updateScene }) => {
     const figures = {
-        Cube: new Cube({}),
         Sphere: new Sphere({}),
+        Cube: new Cube({}),
         Cone: new Cone({}),
         Ellipsoid: new Ellipsoid({}),
-        Toroid: new Toroid({}),
         EllipticalCylinder: new EllipticalCylinder({}),
         EllipticalParaboloid: new EllipticalParaboloid({}),
-        OneSheetedHyperboloid: new OneSheetedHyperboloid({}),
-        TwoSheetedHyperboloid: new TwoSheetedHyperboloid({}),
-        ParabolicCylinder: new ParabolicCylinder({}),
         HyperbolicCylinder: new HyperbolicCylinder({}),
         HyperbolicParaboloid: new HyperbolicParaboloid({}),
+        OneSheetedHyperboloid: new OneSheetedHyperboloid({}),
+        ParabolicCylinder: new ParabolicCylinder({}),
+        Toroid: new Toroid({}),
+        TwoSheetedHyperboloid: new TwoSheetedHyperboloid({}),
     }
 
     const [showPanel, setShowPanel] = useState(false);

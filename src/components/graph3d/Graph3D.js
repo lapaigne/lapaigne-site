@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Math3D, { Point, Light, Cube } from "../../modules/Math3D";
+import Math3D, { Point, Light, Sphere } from "../../modules/Math3D";
 import Graph3DUI from "./Graph3DUI";
 import useGraph from "../hooks/useGraph";
 // import './Graph3D.scss';
@@ -7,7 +7,7 @@ import useGraph from "../hooks/useGraph";
 const Graph3D = () => {
     const settings = {
         showPoints: false,
-        showEdges: false,
+        showEdges: true,
         showPolygons: true,
         canRotate: false
     }
@@ -21,7 +21,7 @@ const Graph3D = () => {
     };
     const LIGHT = new Light(-20, 0, 10, 5e3);
     const math3D = new Math3D({ WIN });
-    let scene = [new Cube({ center: new Point(10, 0, 0) })];
+    let scene = [new Sphere({ segments: 10 })];
 
     const Graph = useGraph(renderScene);
     let graph = null;

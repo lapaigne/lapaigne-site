@@ -1,4 +1,4 @@
-﻿import { Vector } from "./entities";
+import { Vector } from "./entities";
 export default class Math3D {
     constructor({ WIN }) {
         this.WIN = WIN;
@@ -133,11 +133,11 @@ export default class Math3D {
     }
 
     calcVectorProd(a, b) {
-        return new Vector({
-            x: a.y * b.z - a.z * b.y,
-            y: -b.z * a.x + b.x * a.z,
-            z: a.x * b.y - a.y * b.x
-        })
+        return new Vector(
+            a.y * b.z - a.z * b.y,
+            -b.z * a.x + b.x * a.z,
+            a.x * b.y - a.y * b.x
+        );
     }
 
     calcDotProduct(a, b) {
@@ -145,11 +145,11 @@ export default class Math3D {
     }
 
     calcVector(a, b) {
-        return new Vector({
-            x: b.x - a.x,
-            y: b.y - a.y,
-            z: b.z - a.z
-        });
+        return new Vector(
+            b.x - a.x,
+            b.y - a.y,
+            b.z - a.z
+        );
     }
 
     calcVectorLength(a) {
