@@ -24,17 +24,39 @@ export default class TwoSheetedHyperboloid extends Figure {
             }
         }
 
-        for (let i = 0; i < this.points.length; i++) {
-            if (i + 1 < this.points.length && (i + 1) % segments !== 0) {
-                this.edges.push(new Edge(
-                    i,
-                    i + 1
-                ));
-            } else if (i + 1 >= segments && (i + 1) % segments === 0) {
-                this.edges.push(new Edge(
-                    i,
-                    i + 1 - segments
-                ));
+        for (let i = 0; i < 1 + segments / 2; i++) {
+            for (let j = 0; j < segments; j++) {
+                this.edges.push(
+                    new Edge(
+                        i * segments + j % segments,
+                        i * segments + (j + 1) % segments,
+                    ));
+
+                if (i < segments / 2 && ((i + 1) * segments + j % segments + 1) < this.points.length / 2) {
+                    this.edges.push(
+                        new Edge(
+                            i * segments + j % segments + 1,
+                            (i + 1) * segments + j % segments + 1,
+                        ));
+                }
+            }
+        }
+
+        for (let i = 1 + segments / 2; i < 2 + segments; i++) {
+            for (let j = 0; j < segments; j++) {
+                this.edges.push(
+                    new Edge(
+                        i * segments + j % segments,
+                        i * segments + (j + 1) % segments,
+                    ));
+
+                if (this.points[(i + 1) * segments + j % segments + 1]) {
+                    this.edges.push(
+                        new Edge(
+                            i * segments + j % segments + 1,
+                            (i + 1) * segments + j % segments + 1,
+                        ));
+                }
             }
         }
 

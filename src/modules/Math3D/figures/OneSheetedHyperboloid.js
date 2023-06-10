@@ -13,19 +13,24 @@ export default class OneSheetedHyperboloid extends Figure {
                 ));
             }
         }
-        for (let i = 0; i < this.points.length; i++) {
-            if (i + 1 < this.points.length && (i + 1) % segments !== 0) {
-                this.edges.push(new Edge(
-                    i,
-                    i + 1
-                ));
-            } else if (i + 1 >= segments && (i + 1) % segments === 0) {
-                this.edges.push(new Edge(
-                    i,
-                    i + 1 - segments
-                ));
+
+        for (let i = 0; i < segments + 1; i++) {
+            for (let j = 0; j < segments; j++) {
+                this.edges.push(
+                    new Edge(
+                        i * segments + j % segments,
+                        i * segments + (j + 1) % segments,
+                    ));
+                if (this.points[(i + 1) * segments + j % segments + 1]) {
+                    this.edges.push(
+                        new Edge(
+                            i * segments + j % segments + 1,
+                            (i + 1) * segments + j % segments + 1,
+                        ));
+                }
             }
         }
+
         for (let i = 0; i < this.points.length; i++) {
             if (i + 1 + segments < this.points.length && (i + 1) % segments !== 0) {
                 this.polygons.push(new Polygon([i, i + 1, i + 1 + segments, i + segments], color));
