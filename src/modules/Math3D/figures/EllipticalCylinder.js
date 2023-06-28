@@ -37,7 +37,7 @@ export default class EllipticalCylinder extends Figure {
 
         const dc = 255 / h;
 
-        for (let i = 0; i < h; i++) {
+        for (let i = 0; i < h - 1; i++) {
             const currentColor = Polygon.prototype.rgbToHex(dc*i, 60, 80);
             for (let j = 0; j < segments; j++) {
                 this.polygons.push(
