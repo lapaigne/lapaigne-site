@@ -1,9 +1,9 @@
 import { Point, Polygon, Edge, Figure } from "../entities";
 export default class EllipticalParaboloid extends Figure {
-    constructor({ segments = 20, a = 7, b = 4, center = new Point(), color = '#91cbd7' }) {
+    constructor({ count = 20, a = 7, b = 4, center = new Point(), color = '#91cbd7' }) {
         super({ center });
         this.disableOptimization = true;
-        const dt = Math.PI * 2 / segments;
+        const dt = Math.PI * 2 / count;
         for (let i = 0; i <= Math.PI; i += dt) {
             for (let j = 0; j < 2 * Math.PI; j += dt) {
                 this.points.push(new Point(
@@ -15,29 +15,29 @@ export default class EllipticalParaboloid extends Figure {
         }
 
         for (let i = 0; i < this.points.length; i++) {
-            if (i + 1 < this.points.length && (i + 1) % segments !== 0) {
+            if (i + 1 < this.points.length && (i + 1) % count !== 0) {
                 this.edges.push(new Edge(
                     i,
                     i + 1
                 ));
-            } else if ((i + 1) % segments === 0) {
+            } else if ((i + 1) % count === 0) {
                 this.edges.push(new Edge(
                     i,
-                    i + 1 - segments
+                    i + 1 - count
                 ));
             }
-            if (i < this.points.length - segments) {
+            if (i < this.points.length - count) {
                 this.edges.push(new Edge(
                     i,
-                    i + segments
+                    i + count
                 ));
             }
         }
         for (let i = 0; i < this.points.length; i++) {
-            if (i + 1 + segments < this.points.length && (i + 1) % segments !== 0) {
-                this.polygons.push(new Polygon([i, i + 1, i + 1 + segments, i + segments], color));
-            } else if (i + segments < this.points.length && (i + 1) % segments === 0) {
-                this.polygons.push(new Polygon([i, i + 1 - segments, i + 1, i + segments], color));
+            if (i + 1 + count < this.points.length && (i + 1) % count !== 0) {
+                this.polygons.push(new Polygon([i, i + 1, i + 1 + count, i + count], color));
+            } else if (i + count < this.points.length && (i + 1) % count === 0) {
+                this.polygons.push(new Polygon([i, i + 1 - count, i + 1, i + count], color));
             }
         }
     }
