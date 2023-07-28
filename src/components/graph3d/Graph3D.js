@@ -6,10 +6,11 @@ import useGraph from "../hooks/useGraph";
 
 const Graph3D = () => {
     const settings = {
+        canRotate: false,
         showPoints: false,
         showEdges: false,
         showPolygons: true,
-        canRotate: false
+        showLight: true
     }
     const WIN = {
         LEFT: -10,
@@ -21,7 +22,7 @@ const Graph3D = () => {
     };
     const LIGHT = new Light(-20, 0, 10, 5e3);
     const math3D = new Math3D({ WIN });
-    let scene = [new Sphere({ segments: 10 })];
+    let scene = [new Sphere({})];
 
     const Graph = useGraph(renderScene);
     let graph = null;
@@ -54,10 +55,11 @@ const Graph3D = () => {
     const wheel = (event) => {
         const delta = 1 + event.wheelDelta / 1200;
         scene.forEach(figure => {
+            const matrix = math3D.zoom(delta);
             figure.points.forEach(point => {
-                const matrix = math3D.zoom(delta);
                 math3D.transform(matrix, point);
             });
+            math3D.transform(matrix, LIGHT);
         });
     }
     const mousedown = () => {
@@ -73,12 +75,14 @@ const Graph3D = () => {
         if (settings.canRotate) {
             const { movementX, movementY } = event;
             scene.forEach(figure => {
+                const OYmatrix = math3D.rotateOY(movementX / 180);
+                const OXmatrix = math3D.rotateOX(movementY / 180);
                 figure.points.forEach(point => {
-                    const OYmatrix = math3D.rotateOY(movementX / 180);
-                    const OXmatrix = math3D.rotateOX(movementY / 180);
                     math3D.transform(OYmatrix, point);
                     math3D.transform(OXmatrix, point);
                 });
+                math3D.transform(OYmatrix, LIGHT);
+                math3D.transform(OXmatrix, LIGHT);
             });
         }
     }
@@ -169,7 +173,7 @@ const Graph3D = () => {
                         math3D.ys(p1),
                         math3D.xs(p2),
                         math3D.ys(p2),
-                        '#bbb',
+                        '#bbbbbb',
                         1.5
                     );
                 });
@@ -180,12 +184,22 @@ const Graph3D = () => {
                     graph.point(
                         math3D.xs(point),
                         math3D.ys(point),
-                        '#eee',
+                        '#eeeeee',
                         2
                     );
                 });
             }
         })
+
+        if (settings.showLight){
+
+            graph.point(
+                math3D.xs(LIGHT),
+                math3D.ys(LIGHT),
+                '#ffffff',
+                1.25
+            );
+        }
 
         graph.text(WIN.LEFT, 9.25, OutFPS);
         graph.render();

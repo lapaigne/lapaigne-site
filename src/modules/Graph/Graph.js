@@ -1,9 +1,9 @@
-﻿export default class Graph {
+export default class Graph {
     constructor({ id, width = 500, height = 500, WIN, callbacks }) {
         this.canvas = document.getElementById(id);
         this.canvasV = document.createElement('canvas');
-        this.ctxV = this.canvasV.getContext('2d');
-        this.ctx = this.canvas.getContext('2d');
+        this.ctxV = this.canvasV.getContext('2d', { alpha: false });
+        this.ctx = this.canvas.getContext('2d', { alpha: false });
 
         this.canvas.width = width;
         this.canvas.height = height;
