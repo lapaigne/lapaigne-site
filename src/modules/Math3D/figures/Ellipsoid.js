@@ -3,7 +3,6 @@ export default class Ellipsoid extends Figure {
     constructor({ a = 10, b = 8, c = 12, count = 25, color = '#ff9966', center = new Point() }) {
         super({ center });
 
-        // генерация точек
         this.points = [new Point(this.center.x, this.center.y + b, this.center.z)];
         for (let i = 0; i < count; i++) {
             const theta = Math.PI * (i + 1) / (count + 1);
@@ -18,9 +17,7 @@ export default class Ellipsoid extends Figure {
         }
         this.points.push(new Point(this.center.x, this.center.y - b, this.center.z));
 
-        // генерация полигонов
-        for (let i = 1; i < count + 1; i++) { // проход по всем точкам при полюсах в одном цикле
-            //верхние полигоны (северный полюс)
+        for (let i = 1; i < count + 1; i++) {
             this.polygons.push(
                 new Polygon([
                     (i + 1) % count + 1,
@@ -28,8 +25,6 @@ export default class Ellipsoid extends Figure {
                     0],
                     color
                 ));
-
-            //нижние полигоны (южный полюс)
             this.polygons.push(
                 new Polygon([
                     this.points.length - ((i + 1) % count + 1) - 1,
@@ -38,10 +33,8 @@ export default class Ellipsoid extends Figure {
                     color
                 ));
         }
-
-        // остальные полигоны
         for (let i = 0; i < count - 1; i++) {
-            for (let j = 1; j < count + 1; j++) { // смещение на 1 из-за "северного полюса"
+            for (let j = 1; j < count + 1; j++) { 
                 this.polygons.push(
                     new Polygon([
                         i * count + j % count + 1,
@@ -52,7 +45,6 @@ export default class Ellipsoid extends Figure {
                     ));
             }
         }
-
 
         for (let i = 0; i < count; i++) {
             this.edges.push(
@@ -83,13 +75,5 @@ export default class Ellipsoid extends Figure {
                 }
             }
         }
-
-
-        // for (let i = 0; i < count - 1; i++) {
-        //     for (let j = 0; j < count; j++) { // смещение на 1 из-за "северного полюса"
-        //     }
-        // }
-
-
     }
 }

@@ -1,4 +1,4 @@
-import { Point, Polygon, Edge } from ".";
+import { Point } from ".";
 export default class Figure {
     constructor({ points = [], edges = [], polygons = [], center = new Point(), color = '#e8649b' }) {
         this.points = points;
@@ -28,7 +28,7 @@ export default class Figure {
                 dy: -anim.center.y,
                 dz: -anim.center.z,
             });
-            
+
             const t2 = math3D[anim.method](anim.value);
 
             const t3 = math3D.move({
@@ -36,7 +36,7 @@ export default class Figure {
                 dy: anim.center.y,
                 dz: anim.center.z,
             });
-             const matrix = math3D.getTransformMatrix(t1, t2, t3);
+            const matrix = math3D.getTransformMatrix(t1, t2, t3);
 
             this.points.forEach(point => {
                 math3D.transform(t1, point);
@@ -47,7 +47,7 @@ export default class Figure {
             math3D.transform(t1, this.center);
             math3D.transform(t2, this.center);
             math3D.transform(t3, this.center);
-            
+
         });
     }
 }
