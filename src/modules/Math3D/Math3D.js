@@ -71,8 +71,10 @@ export default class Math3D {
     }
 
     transform(matrix, point) {
-        const result = this.mult(matrix, [point.x, point.y, point.z, 1]);
-        point.makeFromArray(result);
+        const array = this.mult(matrix, [point.x, point.y, point.z, 1]);
+        point.x = array[0];
+        point.y = array[1];
+        point.z = array[2];
     }
 
     multMatrix(a, b) {
