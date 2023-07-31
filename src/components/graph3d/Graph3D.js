@@ -20,7 +20,7 @@ const Graph3D = () => {
         FOCUS: new Point(0, 0, 30),
         CAMERA: new Point(0, 0, 50)
     };
-    const LIGHT = new Light(-20, 0, 10, 5e3);
+    const LIGHT = new Light(-20, 0, 0, 5e3);
     const math3D = new Math3D({ WIN });
     let scene = [new Sphere({})];
 
