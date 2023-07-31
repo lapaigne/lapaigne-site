@@ -1,15 +1,15 @@
 import { Point, Polygon, Edge, Figure } from "../entities";
 export default class Cone extends Figure {
-    constructor({ a = 4, b = 4, c = 4, count = 20, center = new Point(), color = '#499e4c' }) {
+    constructor({ a = 4, b = 4, c = 4, count = 3, center = new Point(), color = '#499e4c' }) {
         super({ center });
         this.disableOptimization = true;
-        const dt = 2 * Math.PI / count;
-        for (let i = -Math.PI; i <= Math.PI; i += dt) {
-            for (let j = 0; j < 2 * Math.PI; j += dt) {
+        const dt = Math.PI / count;
+        for (let i = -count; i <= count; i++) {
+            for (let j = 0; j < count; j++) {
                 this.points.push(new Point(
-                    a * i * Math.cos(j),
-                    c * i,
-                    b * i * Math.sin(j)
+                    a * i * dt * Math.cos(j * 2 * dt),
+                    c * i * dt,
+                    b * i * dt * Math.sin(j * 2 * dt)
                 ));
             }
         }
@@ -34,12 +34,18 @@ export default class Cone extends Figure {
             }
         }
 
-        for (let i = 0; i < this.points.length; i++) {
-            if (i + 1 + count < this.points.length && (i + 1) % count !== 0) {
-                this.polygons.push(new Polygon([i, i + 1, i + 1 + count, i + count], color));
-            } else if (i + count < this.points.length && (i + 1) % count === 0) {
-                this.polygons.push(new Polygon([i, i + 1 - count, i + 1, i + count], color));
+        for (let i = 0; i < 2 * count; i++) {
+            for (let j = 0; j < count; j++) {
+                this.polygons.push(
+                    new Polygon([
+                        i * count + j % count,
+                        i * count + (j + 1) % count,
+                        (i + 1) * count + (j + 1) % count,
+                        (i + 1) * count + j % count],
+                        color)
+                );
             }
         }
+        console.log(this.points.length, this.polygons.length)
     }
 }
