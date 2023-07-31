@@ -1,6 +1,6 @@
 import { Point, Polygon, Edge, Figure } from "../entities";
 export default class Cone extends Figure {
-    constructor({ a = 4, b = 4, c = 4, count = 3, center = new Point(), color = '#499e4c' }) {
+    constructor({ a = 4, b = 4, c = 4, count = 15, center = new Point(), color = '#499e4c' }) {
         super({ center });
         this.disableOptimization = true;
         const dt = Math.PI / count;

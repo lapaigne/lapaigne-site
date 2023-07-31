@@ -1,7 +1,7 @@
 import { Point } from "../entities";
 import Ellipsoid from "./Ellipsoid";
 export default class Sphere extends Ellipsoid {
-    constructor({ radius = 10, count = 30, color = '#aa5577', center = new Point() }) {
+    constructor({ radius = 10, count = 30, color = '#005577', center = new Point() }) {
         super({ a: radius, b: radius, c: radius, count, color, center });
 
         this.animations = [
